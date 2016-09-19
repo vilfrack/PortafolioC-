@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="portafolioModelStoreContainer" CdmEntityContainer="portafolioEntities2">
+    <EntitySetMapping Name="backend">
+      <EntityTypeMapping TypeName="portafolioModel.backend">
+        <MappingFragment StoreEntitySet="backend">
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="frontend">
+      <EntityTypeMapping TypeName="portafolioModel.frontend">
+        <MappingFragment StoreEntitySet="frontend">
+          <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="login">
+      <EntityTypeMapping TypeName="portafolioModel.login">
+        <MappingFragment StoreEntitySet="login">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="login1" ColumnName="login" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="id_perfil" ColumnName="id_perfil" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="master_portafolio">
+      <EntityTypeMapping TypeName="portafolioModel.master_portafolio">
+        <MappingFragment StoreEntitySet="master_portafolio">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_portafolio" ColumnName="id_portafolio" />
+          <ScalarProperty Name="id_backend" ColumnName="id_backend" />
+          <ScalarProperty Name="id_fronend" ColumnName="id_fronend" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="perfil">
+      <EntityTypeMapping TypeName="portafolioModel.perfil">
+        <MappingFragment StoreEntitySet="perfil">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="portada" ColumnName="portada" />
+          <ScalarProperty Name="presentacion" ColumnName="presentacion" />
+          <ScalarProperty Name="id_follow" ColumnName="id_follow" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="portafolio">
+      <EntityTypeMapping TypeName="portafolioModel.portafolio">
+        <MappingFragment StoreEntitySet="portafolio">
+          <ScalarProperty Name="img" ColumnName="img" />
+          <ScalarProperty Name="ruta" ColumnName="ruta" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

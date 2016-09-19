@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="portafolioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="backend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="master_portafolio" Relationship="Self.FK_master_portafolio_backend" FromRole="backend" ToRole="master_portafolio" />
+    <Property Name="porcentaje" Type="Int32" />
+  </EntityType>
+  <EntityType Name="frontend">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="master_portafolio" Relationship="Self.FK_master_portafolio_frontend" FromRole="frontend" ToRole="master_portafolio" />
+    <Property Name="porcentaje" Type="Int32" />
+  </EntityType>
+  <EntityType Name="login">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="id_perfil" Type="Int32" />
+    <NavigationProperty Name="perfil" Relationship="Self.FK_login_login" FromRole="login" ToRole="perfil" />
+  </EntityType>
+  <EntityType Name="master_portafolio">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_portafolio" Type="Int32" />
+    <Property Name="id_backend" Type="Int32" />
+    <Property Name="id_fronend" Type="Int32" />
+    <NavigationProperty Name="backend" Relationship="Self.FK_master_portafolio_backend" FromRole="master_portafolio" ToRole="backend" />
+    <NavigationProperty Name="frontend" Relationship="Self.FK_master_portafolio_frontend" FromRole="master_portafolio" ToRole="frontend" />
+    <NavigationProperty Name="portafolio" Relationship="portafolioModel.FK_master_portafolio_portafolio1" FromRole="master_portafolio" ToRole="portafolio" />
+  </EntityType>
+  <EntityType Name="perfil">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="portada" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="presentacion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="id_follow" Type="Int32" />
+    <NavigationProperty Name="login" Relationship="Self.FK_login_login" FromRole="perfil" ToRole="login" />
+  </EntityType>
+  <Association Name="FK_master_portafolio_backend">
+    <End Role="backend" Type="Self.backend" Multiplicity="0..1" />
+    <End Role="master_portafolio" Type="Self.master_portafolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="backend">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="master_portafolio">
+        <PropertyRef Name="id_backend" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_master_portafolio_frontend">
+    <End Role="frontend" Type="Self.frontend" Multiplicity="0..1" />
+    <End Role="master_portafolio" Type="Self.master_portafolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="frontend">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="master_portafolio">
+        <PropertyRef Name="id_fronend" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_login_login">
+    <End Role="perfil" Type="Self.perfil" Multiplicity="0..1" />
+    <End Role="login" Type="Self.login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="perfil">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="login">
+        <PropertyRef Name="id_perfil" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="portafolioEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="backend" EntityType="Self.backend" />
+    <EntitySet Name="frontend" EntityType="Self.frontend" />
+    <EntitySet Name="login" EntityType="Self.login" />
+    <EntitySet Name="master_portafolio" EntityType="Self.master_portafolio" />
+    <EntitySet Name="perfil" EntityType="Self.perfil" />
+    <AssociationSet Name="FK_master_portafolio_backend" Association="Self.FK_master_portafolio_backend">
+      <End Role="backend" EntitySet="backend" />
+      <End Role="master_portafolio" EntitySet="master_portafolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_master_portafolio_frontend" Association="Self.FK_master_portafolio_frontend">
+      <End Role="frontend" EntitySet="frontend" />
+      <End Role="master_portafolio" EntitySet="master_portafolio" />
+    </AssociationSet>
+    <AssociationSet Name="FK_login_login" Association="Self.FK_login_login">
+      <End Role="perfil" EntitySet="perfil" />
+      <End Role="login" EntitySet="login" />
+    </AssociationSet>
+    <EntitySet Name="portafolio" EntityType="portafolioModel.portafolio" />
+    <AssociationSet Name="FK_master_portafolio_portafolio1" Association="portafolioModel.FK_master_portafolio_portafolio1">
+      <End Role="portafolio" EntitySet="portafolio" />
+      <End Role="master_portafolio" EntitySet="master_portafolio" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="portafolio">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ruta" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="master_portafolio" Relationship="portafolioModel.FK_master_portafolio_portafolio1" FromRole="portafolio" ToRole="master_portafolio" />
+    <Property Name="img" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_master_portafolio_portafolio1">
+    <End Type="portafolioModel.portafolio" Role="portafolio" Multiplicity="0..1" />
+    <End Type="portafolioModel.master_portafolio" Role="master_portafolio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="portafolio">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="master_portafolio">
+        <PropertyRef Name="id_portafolio" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

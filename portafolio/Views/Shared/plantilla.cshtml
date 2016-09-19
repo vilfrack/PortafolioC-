@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Portafolio de Juan Villarroel</title>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/bars.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    
+
+        @RenderBody()
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="../../scripts/js/bootstrap.min.js"></script>
+    <script src="../../scripts/js/jquery.circlechart.js"></script>
+    <script src="../../scripts/js/skill.js"></script>
+    <script src="../../scripts/js/jquery.appear.js"></script>
+    <script src="../../scripts/js/custom.js"></script>
+    <script src="../../scripts/js/jquery.mixitup.js"></script>
+    <script src="../../scripts/js/smoothscrolling.jquery.js"></script>
+    <script src="../../scripts/js/main.js"></script>
+    <script>
+
+        $(function(){
+            $('#Container').mixItUp();
+        });
+
+    $(".filter").click(function () {
+     var filter = $( this ).text();
+        if(filter=='C#'){
+          // $( "#php" ).removeClass( ".filtro ul li" ).addClass( "alternativo" );
+           $("#c").css({"border":"1px", "border-color":"#fff", "border-style":"solid"});
+        }else{
+         $("#c").css({"border":'', "border-color":'', "border-style":''});
+        }
+        if(filter=='PHP'){
+         $("#php").css({"border":"1px", "border-color":"#fff", "border-style":"solid"});
+        }else{
+         $("#php").css({"border":'', "border-color":'', "border-style":''});
+        }
+        if(filter=='Show All'){
+         $("#sha").css({"border":"1px", "border-color":"#fff", "border-style":"solid"});
+        }
+        else{
+         $("#sha").css({"border":'', "border-color":'', "border-style":''});
+        }
+        if(filter=='FRONT-END'){
+         $("#front").css({"border":"1px", "border-color":"#fff", "border-style":"solid"});
+        }
+        else{
+           $("#front").css({"border":'', "border-color":'', "border-style":''});
+        }
+        filter ='';
+    })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿@model portafolio.Models.backend
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/admPlantilla.cshtml";
+}
+
+<h2>Modulo de agregar</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-5">
+            @using (Html.BeginForm("create", "admin", FormMethod.Post))
+            {
+                <!-- form goes here -->
+                 <pre>
+                    ID       : Asignado por el sistema
+                    Nombre   : @Html.EditorFor(model => model.descripcion)
+       
+                </pre>
+                <input type="submit" value="Agregar BackEnd" class="btn-default"/>
+            }
+        </div>
+        <div class="col-sm-5">
+            @using (Html.BeginForm("frontEnd", "admin", FormMethod.Post))
+            {
+                <!-- form goes here -->
+                <pre>
+                    ID       : Asignado por el sistema
+                    Nombre   : @Html.EditorFor(model => model.descripcion)
+       
+                </pre>
+                <input type="submit" value="Agregar FronEnd" class="btn-default" />
+            }
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-sm-5">
+            @using (Html.BeginForm("perfil", "admin", FormMethod.Post))
+            {
+                <!-- form goes here -->
+                <pre>
+                   
+                    @*Presentacion   : @Html.EditorFor(model => model.)
+                    Portada   : @Html.EditorFor(model => model.descripcion)*@
+                   
+       
+                </pre>
+                <input type="submit" value="Agregar BackEnd" class="btn-default" />
+            }
+        </div>
+    </div>
+</div>
+
+

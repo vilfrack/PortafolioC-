@@ -1,0 +1,24 @@
+﻿@helper HelperName(string name) {
+    // your helper can contain code and/or markup, e.g.
+    // var msg = "Hello " + name;
+    // <p>@msg</p>
+    // For more information, visit http://go.microsoft.com/fwlink/?LinkID=204658
+}
+@helper btn_link(System.Web.Mvc.UrlHelper url, string titulo, string controlador, string accion)
+{
+    switch (titulo)
+    {
+        case "Dashboard":
+            @:<a href="@url.Action(@accion, @controlador)"><i class="fa fa-fw fa-table"></i> Dashboard</a>
+            break;
+        case "backend":
+            @:<a href="@url.Action(@accion, @controlador)"><i class="fa fa-fw fa-table"></i> Modulo de backend </a>
+            break;
+        case "frontend":
+            @:<a href="@url.Action(@accion, @controlador)"><i class="fa fa-fw fa-table"></i> Modulo de frontend </a>
+            break;
+        case "proyect":
+            @:<a href="@url.Action(@accion, @controlador)"><i class="fa fa-fw fa-table"></i> Modulo de proyectos </a>
+            break;
+    }
+}

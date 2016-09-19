@@ -1,0 +1,49 @@
+﻿@*@model portafolio.Models.backendPro*@
+
+    @{
+        ViewBag.Title = "backend";
+        Layout = "~/Views/Shared/admPlantilla.cshtml";
+    }
+  
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            BackEnd <small>Operaciones con backend</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li class="active">
+                                <i class="fa fa-dashboard"></i> BackEnd
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <button type="btnmodal" class="btn btn-primary" data-toggle="modal" data-target="#modalAdd">Agregar</button>
+                    </div>
+                </div>
+                <div class="row">
+
+                      <!--Abrir vista parcial donde@Html.Action("ActionResult", "Controlador")-->
+
+               @Html.Action("detailBackend", "admin")
+                  
+
+                </div>
+                <!-- MODAL -->
+                <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            @Html.Action("addBackend", "admin")
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+   
+

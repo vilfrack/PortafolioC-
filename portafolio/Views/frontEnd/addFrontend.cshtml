@@ -1,0 +1,27 @@
+﻿@model portafolio.Models.frontendPro
+@{
+    Layout = null;
+}
+
+<form method="post" action="@Url.Action("addFrontend", "frontEnd")">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Agregar backend</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="Descripcion">Descripcion</label>
+            @Html.TextBoxFor(model => model.descripcion, new { Class = "form-control", placeholder = "Descripcion" })
+
+        </div>
+        <div class="form-group">
+            <label for="Porcentaje">Porcentaje</label>
+            @Html.TextBoxFor(model => model.porcentaje, new { Class = "form-control", placeholder = "Porcentaje" })
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">agregar cambio</button>
+    </div>
+</form>

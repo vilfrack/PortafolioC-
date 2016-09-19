@@ -1,0 +1,77 @@
+﻿
+@model IEnumerable<portafolio.Models.portafolio>
+@{
+    ViewBag.Title = "frontend";
+
+}
+<!--AQUI DENE IR EL GRID-->
+@{
+    var grid = new WebGrid(Model, selectionFieldName: "SelectedRow", rowsPerPage: 10);
+}
+<div>
+    @grid.GetHtml(columns: grid.Columns(
+    grid.Column("id", header: "ID", format: (item) => item.GetSelectLink(item.id.ToString())),
+    grid.Column("descripcion", header: "descripcion", format: (item) => item.descripcion),
+    grid.Column("descripcion", header: "Action",
+    format: @<text>
+
+        @Html.Raw("<button id='btnedit' type='button' class='btn btn-info' onclick='EditBack(" + item.id.ToString() + ");'>Edit</button> ")
+        @Html.Raw("<button type='button' class='btn btn-danger' onclick='DeleteBack(" + item.id.ToString() + ")'>Delete</button> ")
+    </text>
+    )),
+    tableStyle: "table table-striped"
+)
+</div>
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            PRUEBA
+            <div id="modalWrapper" class="modal-body">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalMesj" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Registro eliminado</h4>
+            </div>
+            <div class="modal-body">
+                <p>Registro eliminado</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnclose" onclick="cerrar();" class="btn btn-default">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+        function EditBack(pid) {
+            var url = "/proyect/editProyect?id=" + pid + ""; // Establecer URL de la acción
+            $("#modalWrapper").load(url);
+            $("#modalEdit").modal();
+
+        }
+
+        function DeleteBack(pid) {
+
+            if (confirm("Do you want to delete frontend: " + pid)) {
+                var data = { 'id': pid }
+                $.post('/proyect/delete', data,
+                function (data) {
+                    if (data == true)
+                        location = location.href;
+                    else
+                        $("#modalMesj").modal();
+                });
+            }
+        }
+        function cerrar() {
+            location = location.href;
+        }
+</script>
